@@ -28,10 +28,9 @@ function setBoard(){
 
             //On click
             img.onclick = (e) => {
-                // console.log(e.target.getAttribute('id'))
-                //Call a function to check if other square is clicked
-                //If so move piece to that square
+                //High light clicked on piece/square
                 img.classList.add("highlight")
+                //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
             
@@ -47,10 +46,9 @@ function setBoard(){
             
             //On click
             img.onclick = (e) => {
-                // console.log(e.target.getAttribute('id'))
-                //Call a function to check if other square is clicked
-                //If so move piece to that square
+                //High light clicked on piece/square
                 img.classList.add("highlight")
+                //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
 
@@ -66,10 +64,9 @@ function setBoard(){
 
             //On click
             img.onclick = (e) => {
-                // console.log(e.target.getAttribute('id'))
-                //Call a function to check if other square is clicked
-                //If so move piece to that square
+                //High light clicked on piece/square
                 img.classList.add("highlight")
+                //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
 
@@ -132,10 +129,26 @@ function clickRegister(id){
         
     } else {
         console.log(game.ascii())
+        aiMove(id)
     }
     clearBoard()
-    setBoard()
     firstClick = 0;
+}
+
+function aiMove(id){
+    fetch("/api/getMove",{
+        method: "POST",
+        body: JSON.stringify({fen: game.fen()}),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }   
+    }).then((res) => {
+        res.json().then(move => {
+            game.move(move)
+            setBoard()
+        })
+    })
 }
 
 function clearBoard(){
