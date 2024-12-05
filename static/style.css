@@ -94,8 +94,8 @@ hr {
 /* Game Board Styling */
 .container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr); /* Set to 8 for a standard board */
-  grid-template-rows: repeat(8, 1fr); /* Set to 8 for a standard board */
+  grid-template-columns: repeat(10, 1fr); /* Set to 10 for a standard board */
+  grid-template-rows: repeat(10, 1fr); /* Set to 10 for a standard board */
   gap: 0; /* No gap for a checkerboard */
   width: 500px; 
   height: 500px; /* Make it a perfect square */
