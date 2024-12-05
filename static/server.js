@@ -4,14 +4,14 @@ console.log(game.ascii())
 function setBoard(){
     for(let i = 1; i < 50; i++){
         let temppiece = game.get(i)
-        const postPiece = document.createElement('div');
-        //Create container here
+        const postPiece = document.getElementById('test');
+
 
         if(temppiece =='w'){
             const img = document.createElement('img');
             img.src = 'light.png';
             //Append to container when created
-            postPiece.classList.add()//Container name here
+            
 
             //On click
             onclick = _ => {
@@ -24,7 +24,7 @@ function setBoard(){
             const img = document.createElement('img');
             img.src = 'dark.png';
             //Append to container when created
-            postPiece.classList.add()//Container name here
+            
             
             //On click
             onclick = _ => {
@@ -37,7 +37,7 @@ function setBoard(){
             const img = document.createElement('img');
             img.src = 'dlight.png';
             //Append to the container when created
-            postPiece.classList.add()//Container name here
+            
 
             //On click
             onclick = _ => {
@@ -50,7 +50,7 @@ function setBoard(){
             const img = document.createElement('img');
             img.src = 'ddark.png';
             //Append to the container
-            postPiece.classList.add()//Container name here
+            
 
             //On Click
             onclick = _ => {
