@@ -4,12 +4,13 @@ console.log(game.ascii())
 function setBoard(){
     for(let i = 1; i < 50; i++){
         let temppiece = game.get(i)
-        
+        const postPiece = document.createElement('div');
+        //Create container here
+
         if(temppiece =='w'){
             const img = document.createElement('img');
             img.src = 'light.png';
             //Append to container when created
-            const postPiece = document.createElement('div');
             postPiece.classList.add()//Container name here
 
             //On click
@@ -65,3 +66,6 @@ function setBoard(){
     }
 }
 
+function movePiece(index, piece){
+    
+}
