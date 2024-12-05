@@ -11,7 +11,7 @@ function setBoard(){
         
         if((i-1) % 10 < 5){
             const emptyspace = document.createElement('img')
-            emptyspace.src = ''
+            emptyspace.alt = ''
             emptyspace.classList.add('square')
             postPiece.append(emptyspace)
         }
@@ -106,29 +106,32 @@ function setBoard(){
                 clickRegister(e.target.getAttribute('id'))
             }
         }
-
+        
+        //Depending on row, print empty spaces first, or pieces first
         if((i-1) % 10 >= 5){
             const emptyspace = document.createElement('img')
-            emptyspace.src = ''
+            emptyspace.alt = ''
             emptyspace.classList.add('square')
             postPiece.append(emptyspace)
         }
     }
 }
 
-
+//Function to check when click is done for move
 function clickRegister(id){
+    //If first click, set to id of clicked space
     if(firstClick == 0){
         firstClick = id
         return
     }
 
-
+    //Check if the move is valid (This will execute the move as well). If not reset the board but don't move piece
     if(game.move({from: firstClick, to: id}) == false){
         console.log("Invalid Move!")
         clearBoard()
         setBoard()
     } else {
+        // If move is valid, move the ai Pieces and reset the board
         console.log(game.ascii())
         clearBoard()
         aiMove(id)
@@ -137,7 +140,9 @@ function clickRegister(id){
     firstClick = 0;
 }
 
+//Function for AI move
 function aiMove(id){
+    //Fetch for backend to get proper move
     fetch("/api/getMove",{
         method: "POST",
         body: JSON.stringify({fen: game.fen()}),
@@ -146,6 +151,7 @@ function aiMove(id){
             'Content-Type': 'application/json'
         }   
     }).then((res) => {
+        //Wait for response then move and set the game board
         res.json().then(move => {
             game.move(move)
             setBoard()
@@ -153,6 +159,7 @@ function aiMove(id){
     })
 }
 
+//Clears the board
 function clearBoard(){
     const parent = document.getElementById("id-container")
     while(parent.firstChild){
