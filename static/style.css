@@ -1,3 +1,35 @@
+html, body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-family: "Lato", Calibri, sans-serif;
+  font-size: 16px;
+  background-color: #ff8c00; }
+  html h1, body h1 {
+    margin-top: 10px; }
+  html h2, body h2 {
+    font-size: 1.3em; }
+  html h3, body h3 {
+    font-size: 1.1em; }
+  html a, body a {
+    text-decoration: none;
+    color: #f5feff;
+    font-weight: 700; }
+    html a:hover, body a:hover {
+      text-decoration: underline; }
+  html hr, body hr {
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    background-image: linear-gradient(to right, #333333, #ccc); }
+  html .clearfix, body .clearfix {
+    clear: both; }
+
 div.column {
   position: relative;
   float: left;
