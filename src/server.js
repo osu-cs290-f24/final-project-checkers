@@ -10,6 +10,8 @@ app.engine("handlebars", engine({
 }))
 app.set("view engine", "handlebars")
 
+app.use(express.json())
+
 app.use(express.static('static'))
 
 app.get('/', function (req, res) {
@@ -20,7 +22,7 @@ app.get('/', function (req, res) {
 app.post('/api/getMove/', function (req, res, next) {
     console.log("== Recieved move request:", req.body)
     try {
-        game = Draughts(req.body)
+        game = Draughts(req.body.fen)
     } catch (error) {
         console.log("== Couldn't parse")
         res.status(400)
