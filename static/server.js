@@ -31,6 +31,7 @@ function setBoard(){
                 // console.log(e.target.getAttribute('id'))
                 //Call a function to check if other square is clicked
                 //If so move piece to that square
+                img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
             
@@ -49,6 +50,7 @@ function setBoard(){
                 // console.log(e.target.getAttribute('id'))
                 //Call a function to check if other square is clicked
                 //If so move piece to that square
+                img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
 
@@ -67,6 +69,7 @@ function setBoard(){
                 // console.log(e.target.getAttribute('id'))
                 //Call a function to check if other square is clicked
                 //If so move piece to that square
+                img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
 
@@ -85,6 +88,7 @@ function setBoard(){
                 // console.log(e.target.getAttribute('id'))
                 //Call a function to check if other square is clicked
                 //If so move piece to that square
+                img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
 
@@ -101,6 +105,7 @@ function setBoard(){
                 console.log(e.target.getAttribute('id'))
                 //Call a function to check if other square is clicked
                 //If so move piece to that square
+                img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
         }
@@ -122,15 +127,15 @@ function clickRegister(id){
     }
 
 
-    if(game.move({from: firstClick, to: id}) == null){
+    if(game.move({from: firstClick, to: id}) == false){
         console.log("Invalid Move!")
+        
     } else {
-        clearBoard()
         console.log(game.ascii())
-        setBoard()
     }
-
-    firstClick = undefined
+    clearBoard()
+    setBoard()
+    firstClick = 0;
 }
 
 function clearBoard(){
