@@ -1,34 +1,51 @@
-html, body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+header {
+  background-color: #000000;
+  color: #fff;
+}
+
+.site-title {
   margin: 0;
-  padding: 0;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  color: #03a9f4;
+}
+
+.column p {
+  text-decoration: none;
   color: #000000;
-  font-family: "Lato", Calibri, sans-serif;
+}
+
+header a:hover {
+  color: #0c719e;
+}
+
+p {
+  text-decoration: none;
+  color: #e2f6ff;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+header p {
+  color: #f75f00;
+}
+
+header a {
+  color: #016d0f;
+}
+
+html, body {
   font-size: 16px;
-  background-color: #ff8c00; }
-  html h1, body h1 {
-    margin-top: 10px; }
-  html h2, body h2 {
-    font-size: 1.3em; }
-  html h3, body h3 {
-    font-size: 1.1em; }
-  html a, body a {
-    text-decoration: none;
-    color: #f5feff;
-    font-weight: 700; }
-    html a:hover, body a:hover {
-      text-decoration: underline; }
-  html hr, body hr {
-    border: 0;
-    height: 1px;
-    background-color: #333;
-    background-image: linear-gradient(to right, #333333, #ccc); }
-  html .clearfix, body .clearfix {
-    clear: both; }
+  background-color: #f75f00; 
+}
+
+html hr, body hr {
+  border: 0;
+  height: 2px;
+  background-color: #000000;
+  background-image: linear-gradient(to right, #000000, #f75f00); 
+}
 
 div.column {
   position: relative;
@@ -36,4 +53,25 @@ div.column {
   overflow: auto;
   height: 100%;
   min-height: 100%;
-  width: 50%; }
+  width: 30%; 
+}
+
+div.team-page {
+  text-align: right;
+  float: right;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: .25fr .25fr .25fr .25fr .25fr .25fr .25fr .25fr .25fr .25fr;
+  grid-gap: 5px;
+}
+.container div {
+  background-color: rgb(0, 0, 0);
+  aspect-ratio: 1;
+}
+
+.container img {
+  height: 50px;
+  width: 50px;
+}
