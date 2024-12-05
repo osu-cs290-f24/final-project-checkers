@@ -126,12 +126,14 @@ function clickRegister(id){
 
     if(game.move({from: firstClick, to: id}) == false){
         console.log("Invalid Move!")
-        
+        clearBoard()
+        setBoard()
     } else {
         console.log(game.ascii())
+        clearBoard()
         aiMove(id)
     }
-    clearBoard()
+    
     firstClick = 0;
 }
 

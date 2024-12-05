@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
 
 app.post('/api/getMove/', function (req, res, next) {
     console.log("== Recieved move request:", req.body)
+    let game
     try {
         game = Draughts(req.body.fen)
     } catch (error) {
@@ -31,7 +32,7 @@ app.post('/api/getMove/', function (req, res, next) {
 
     console.log("== Successfully parsed")
 
-    let moves = draughts.moves()
+    let moves = game.moves()
     let move = moves[Math.floor(Math.random() * moves.length)]
 
     console.log("== Returning move:", move)
