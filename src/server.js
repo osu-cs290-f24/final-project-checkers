@@ -37,8 +37,8 @@ app.post('/api/getMove/', function (req, res, next) {
 
     console.log("== Returning move:", move)
 
-    res.body = move
-    res.status(200)
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(move))
 })
 
 app.listen(port, function () {
