@@ -4,8 +4,11 @@ setBoard()
 
 var firstClick = 0;
 
+//Set board funtion to print out images for board
 function setBoard(){
+    //For every piece (50 pieces)
     for(let i = 1; i < 51; i++){
+        //Initialize the temporary piece and container to add image to
         let temppiece = game.get(i)
         const postPiece = document.getElementById('id-container')
         
@@ -15,10 +18,12 @@ function setBoard(){
             emptyspace.classList.add('square')
             postPiece.append(emptyspace)
         }
+        //If piece is small white
         if(temppiece =='w'){
             const img = document.createElement('img')
             img.src = 'light.png'
 
+            //Add class square to img for sizing
             img.classList.add('square')
             img.setAttribute('id', i)
 
@@ -33,11 +38,13 @@ function setBoard(){
                 //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
-            
+
+        //If piece is small black
         } else if(temppiece == 'b'){
             const img = document.createElement('img')
             img.src = 'dark.png'
 
+            //Add class square to img for sizing
             img.classList.add('square')
             img.setAttribute('id', i)
 
@@ -51,11 +58,13 @@ function setBoard(){
                 //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
-
+        
+        // If piece is Large White
         } else if(temppiece == 'W'){
             const img = document.createElement('img')
             img.src = 'dlight.png'
             
+            //Add class square to img for sizing
             img.classList.add('square')
             img.setAttribute('id', i)
 
@@ -69,11 +78,13 @@ function setBoard(){
                 //Collect Id of clicked on piece/square
                 clickRegister(e.target.getAttribute('id'))
             }
-
+        
+        // If piece is Large Black
         } else if(temppiece == 'B'){
             const img = document.createElement('img')
             img.src = 'ddark.png'
 
+            //Add class square to img for sizing
             img.classList.add('square')
             img.setAttribute('id', i)
 
@@ -88,7 +99,8 @@ function setBoard(){
                 img.classList.add("highlight")
                 clickRegister(e.target.getAttribute('id'))
             }
-
+        
+            // If piece is empty
         } else if(temppiece == '0'){
             const img = document.createElement('img')
             img.src = ''
