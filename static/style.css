@@ -70,7 +70,17 @@ header a:hover {
   color: #f75f00;
 }
 
-/* Player Info Styling */
+/* Player/AI Info Styling */
+
+.ai-info {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 .player-info {
   margin: 20px;
   padding: 20px;
@@ -78,6 +88,16 @@ header a:hover {
   color: #000;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  bottom: 0;
+
+  /* And if you want the div to be full-width: */
+  left: 0;
+  right: 0;
+}
+
+.ai-info h2 {
+  margin-bottom: 10px;
 }
 
 .player-info h2 {
@@ -99,6 +119,12 @@ hr {
   gap: 0; /* No gap for a checkerboard */
   width: 500px; 
   height: 500px; /* Make it a perfect square */
+  padding: 0;
+  margin: 20px auto;
+  background-image: url(board.png);
+  background-size: 500px 500px; /* Match with container for pieces */
+  background-position: center; /* Align the background image */
+  box-sizing: border-box;
 }
 
 .square {
