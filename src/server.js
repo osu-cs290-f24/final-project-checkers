@@ -1,50 +1,77 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
 import { Draughts} from 'draughts'
-import { loadModel, getMove } from './ai/model.js'
+import { simpleMove } from './ai/simple.js'
+import fs from 'fs'
 
 const app = express()
 const port = process.env.PORT || 3000
 
-const modelName = 'T1_9'
-const model = await loadModel(modelName)
+let stats = JSON.parse(fs.readFileSync('stats.json'))
 
-app.engine("handlebars", engine({
-    defaultLayout: "main"
+app.engine('handlebars', engine({
+    defaultLayout: 'main'
 }))
-app.set("view engine", "handlebars")
+app.set('view engine', 'handlebars')
 
 app.use(express.json())
 
 app.use(express.static('static'))
 
 app.get('/', function (req, res) {
-    console.log("== Recieved index request")
-    res.status(200).render("index", {games: 0})
+    console.log('== Recieved index request')
+    res.status(200).render('index', {title: `Wins: ${stats.wins}, Ties: ${stats.wins}, Loses: ${stats.wins}`, 'wins': stats.wins, loses: stats.loses})
 })
 
 app.post('/api/getMove/', function (req, res, next) {
-    console.log("== Recieved move request:", req.body)
+    console.log('== Recieved move request:', req.body)
     let game
     try {
         game = Draughts(req.body.fen)
     } catch (error) {
-        console.log("== Couldn't parse")
+        console.log('== Couldn\'t parse')
         res.status(400)
         return
     }
 
-    console.log("== Successfully parsed")
+    console.log('== Successfully parsed')
     console.log(game.ascii())
 
-    const move = getMove(model, game).move
+    if (game.gameOver()) {
+        console.log('== Game is over')
+        if (game.inDraw()) {
+            stats.ties += 1
+        } else {
+            stats.loses += 1
+        }
 
-    console.log("== Returning move:", move)
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(null))
+    }
+
+    const { move, value } = simpleMove(game)
+
+    console.log('== Returning move:', move)
+    console.log('== With value:', value)
+
+    game.move(move)
+    if (game.gameOver()) {
+        console.log('== Game is over')
+        if (game.inDraw()) {
+            stats.ties += 1
+        } else {
+            stats.wins += 1
+        }
+    }
 
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(move))
 })
 
 app.listen(port, function () {
-    console.log("== Server is listening on port", port)
+    console.log('== Server is listening on port', port)
 })
+
+app.on('exit', () => {
+    fs.writeFileSync('stats.json', JSON.stringify(stats))
+});
