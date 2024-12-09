@@ -1,9 +1,13 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
 import { Draughts} from 'draughts'
+import { loadModel, getMove } from './ai/model.js'
 
-let app = express()
-let port = process.env.PORT || 3000
+const app = express()
+const port = process.env.PORT || 3000
+
+const modelName = 'T1_9'
+const model = await loadModel(modelName)
 
 app.engine("handlebars", engine({
     defaultLayout: "main"
@@ -31,9 +35,9 @@ app.post('/api/getMove/', function (req, res, next) {
     }
 
     console.log("== Successfully parsed")
+    console.log(game.ascii())
 
-    let moves = game.moves()
-    let move = moves[Math.floor(Math.random() * moves.length)]
+    const move = getMove(model, game).move
 
     console.log("== Returning move:", move)
 
