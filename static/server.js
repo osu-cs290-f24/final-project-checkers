@@ -103,7 +103,7 @@ function setBoard(){
             // If piece is empty
         } else if(temppiece == '0'){
             const img = document.createElement('img')
-            img.src = ''
+            img.alt = ''
 
             img.classList.add('square')
             img.setAttribute('id', i)
