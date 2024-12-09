@@ -6,13 +6,10 @@
     --link-hover: white;
 }
 
-.flex-container {
+.main {
     display: flex;
-}
-
-.main-container {
     margin: 0 auto;
-    flex-direction: column;
+    flex-direction: row;
     max-width: 80vw;
 }
 
@@ -31,7 +28,7 @@ body {
     color: var(--text-color);
 }
 
-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,45 +78,58 @@ a:hover {
     color: var(--link-hover);
 }
 
-.text-image-container {
+.about-us-text {
     margin: 100px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     color: black;
-}
-
-.text-block {
     font-size: 20px;
-    @media (width < 50em) {
-        display: block;
-    }
+    
     @media (width >= 50em) {
         width: 40%;
-    }
+    }    
 }
 
-.img-container {
-    @media (width < 50em) {
-        width: 80%;
-        order: -1;
-    }
-    @media (width >= 50em) {
-        width: 40%;
-    }
-    display: block;
-    margin: 10px;
-    align-content: center;
-}
+.grid-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 40px;
+  }
 
-
-.main-image {
-    width: auto;
-    height: auto;
+.dom, .kai, .amit, .khoi {
     border-radius: 8px;
-    max-width: 100%;
+    max-width: 56%;
     max-height: 100%;
-    animation: slideIn .8s ease-out forwards;
+}
+
+.i1,.i2,.i3,.i4 {
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+}
+
+.i1:hover, .i2:hover, .i3:hover, .i4:hover {
+    transform: scale(1.2);
+}
+
+.dom { 
+    animation: slideIn 1s ease-out forwards; 
+}
+.kai { 
+    animation: slideIn 1.2s ease-out forwards; 
+}
+.amit { 
+    animation: slideIn 1.4s ease-out forwards; 
+}
+.khoi { 
+    animation: slideIn 1.6s ease-out forwards; 
+    
+}
+
+.caption {
+    color: black;
+    display: block;
 }
 
 .email-image {
@@ -141,20 +151,25 @@ a:hover {
     font-size: 1em;
     cursor: pointer;
     text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
   
 .game-button:hover {
     background-color: #0c719e;
     color: #f75f00;
+    transform: scale(1.2);
 }
 
 @keyframes slideIn {
     from {
-      transform: translateX(50%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+        translate: 100vw 0;
+        scale: 200% 1;
+        opacity: 0;
+      }
+    
+      to {
+        translate: 0 0;
+        scale: 100% 1;
+        opacity: 1;
+      }
   }
