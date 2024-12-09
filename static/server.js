@@ -12,6 +12,8 @@ function setBoard(){
         let temppiece = game.get(i)
         const postPiece = document.getElementById('id-container')
         
+        // By checking i in the formula we can determine where to place empty spaces.
+        // Allows for alternating lines
         if((i-1) % 10 < 5){
             const emptyspace = document.createElement('img')
             emptyspace.alt = ''
