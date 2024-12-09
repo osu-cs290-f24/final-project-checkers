@@ -62,12 +62,17 @@ header a:hover {
   font-size: 1em;
   cursor: pointer;
   text-decoration: none;
-  padding: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .team-button:hover {
   background-color: #0c719e;
   color: #f75f00;
+  transform: scale(1.2);
+}
+
+.team-button:active {
+  transform: scale(1.4);
 }
 
 /* Player/AI Info Styling */
