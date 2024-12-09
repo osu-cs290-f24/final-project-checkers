@@ -20,7 +20,7 @@ app.use(express.static('static'))
 
 app.get('/', function (req, res) {
     console.log('== Recieved index request')
-    res.status(200).render('index', {title: `Wins: ${stats.wins}, Ties: ${stats.wins}, Loses: ${stats.wins}`, 'wins': stats.wins, loses: stats.loses})
+    res.status(200).render('index', {title: `Wins: ${stats.wins}, Ties: ${stats.ties}, Loses: ${stats.loses}`, 'wins': stats.wins, loses: stats.loses})
 })
 
 app.post('/api/getMove/', function (req, res, next) {
