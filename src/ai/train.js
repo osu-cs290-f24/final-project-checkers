@@ -1,6 +1,7 @@
 import * as tf from '@tensorflow/tfjs-node-gpu'
 import { Draughts } from 'draughts'
 import { convertToTensor, getModel, getMove, saveModel } from './model.js'
+import { getSimpleMove } from './simple.js'
 
 function getMoveWithRandom(game, model, noModelProbability, randomProbability) {
     if (Math.random() < noModelProbability) {
@@ -8,7 +9,7 @@ function getMoveWithRandom(game, model, noModelProbability, randomProbability) {
             const moves = game.moves()
             return moves[Math.floor(Math.random() * moves.length)]
         } else {
-            return simpleMove(game).move
+            return getSimpleMove(game).move
         }
     } else {
         return getMove(model, game)

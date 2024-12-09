@@ -1,43 +1,44 @@
-function sigmoid(x, k) {
-    return 1 / (1 + Math.exp(-x / k));
-}
-
 function simpleEval(game) {
     const pos = game.position()
-    let rawScore = 0
+    let score = 0
     for (let i = 0; i < pos.length; i++) {
         switch (pos.charAt(i)) {
             case 'w':
-                rawScore += 1
+                score += 1
             case 'b':
-                rawScore -= 1
+                score -= 1
+            case 'W':
+                score += 5
+            case 'B':
+                score -= 5
         }
     }
 
-    return sigmoid(rawScore, 5)
+    return score
 }
 
-export function simpleMove(game, depth=2) {
+function simpleMove(game, color, depth) {
     if (game.gameOver()) {
         if (game.inDraw()) {
-            return {move: undefined, value: 0.5}
+            return {move: undefined, value: 0}
         }
 
-        return {move: undefined, value: 0}
+        const value = (game.turn() == 'w') ? -Infinity : Infinity
+        return {move: undefined, value: color * value}
     }
 
-    const isWhite = game.turn() == 'w'
     if (depth == 0) {
-        return  {move: undefined, value: isWhite ? simpleEval(game) : (1 - simpleEval(game))}
+        return  {move: undefined, value: color * simpleEval(game)}
     }
 
     let best = null
-    let bestValue = -Infinity
+    let bestValue = NaN
     game.moves().forEach(move => {
         game.move(move)
 
-        const value = isWhite ? simpleMove(game, depth - 1).value : (1 - simpleMove(game, depth - 1).value)
-        if (value > bestValue) {
+        const value = -simpleMove(game, -color, depth - 1).value
+        // Not is for the NaN
+        if (!(value <= bestValue)) {
             best = move
             bestValue = value
         }
@@ -46,4 +47,8 @@ export function simpleMove(game, depth=2) {
     });
 
     return {move: best, value: bestValue}
+}
+
+export function getSimpleMove(game, depth=2) {
+    return simpleMove(game, game.turn() == 'w' ? 1 : -1, depth)
 }

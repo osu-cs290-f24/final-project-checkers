@@ -1,7 +1,7 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
 import { Draughts} from 'draughts'
-import { simpleMove } from './ai/simple.js'
+import { getSimpleMove } from './ai/simple.js'
 import fs from 'fs'
 
 const app = express()
@@ -47,12 +47,12 @@ app.post('/api/getMove/', function (req, res, next) {
 
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(null))
+        return;
     }
 
-    const { move, value } = simpleMove(game)
+    const { move, value } = getSimpleMove(game, 4)
 
     console.log('== Returning move:', move)
-    console.log('== With value:', value)
 
     game.move(move)
     if (game.gameOver()) {
